@@ -2,7 +2,7 @@ addon.name      = "StepTracker";
 addon.author    = "Mahlkni";
 addon.version   = "1.0";
 addon.desc      = "Simple custom timer functionality";
-addon.link      = "https://github.com/MahlKni/Ashita4-Addons/steptracker";
+addon.link      = "https://github.com/MahlKni/stepTracker/";
 
 require "common";
 local fonts = require("fonts");
