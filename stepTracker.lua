@@ -30,6 +30,10 @@ local osd = T{};
 local mobs = T{};-- [id] = {name,StepName,+StepCount}
 local Towns = T{'Tavnazian Safehold','Al Zahbi','Aht Urhgan Whitegate','Nashmau','Southern San d\'Oria [S]','Bastok Markets [S]','Windurst Waters [S]','San d\'Oria-Jeuno Airship','Bastok-Jeuno Airship','Windurst-Jeuno Airship','Kazham-Jeuno Airship','Southern San d\'Oria','Northern San d\'Oria','Port San d\'Oria','Chateau d\'Oraguille','Bastok Mines','Bastok Markets','Port Bastok','Metalworks','Windurst Waters','Windurst Walls','Port Windurst','Windurst Woods','Heavens Tower','Ru\'Lude Gardens','Upper Jeuno','Lower Jeuno','Port Jeuno','Rabao','Selbina','Mhaura','Kazham','Norg','Mog Garden','Celennia Memorial Library','Western Adoulin','Eastern Adoulin'};
 local area = '';
+local boxCount = 0;
+local quickCount = 0;
+local featherCount = 0;
+local stutterCount = 0;
 
 settings.register('settings', 'settings_update', function (s)
     if (s ~= nil) then
@@ -136,7 +140,12 @@ function update()
             v[5] = os.time();
         end
 
-        if os.time() - v[5] > osd.displayTime and v[2] == 0 then mobs[k] = nil end;
+        if os.time() - v[5] > osd.displayTime and v[2] == 0 then mobs[k] = nil
+		boxCount = 0;
+		quickCount = 0;
+		featherCount = 0;
+		stutterCount = 0;
+		end;
     end
 end
 
