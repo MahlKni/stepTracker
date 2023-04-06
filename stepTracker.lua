@@ -1,6 +1,6 @@
 addon.name      = "StepTracker";
 addon.author    = "Mahlkni";
-addon.version   = "1.0";
+addon.version   = "0.1";
 addon.desc      = "Track dancer step levels";
 addon.link      = "https://github.com/MahlKni/stepTracker/";
 
