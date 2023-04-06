@@ -1,7 +1,7 @@
 addon.name      = "StepTracker";
 addon.author    = "Mahlkni";
 addon.version   = "1.0";
-addon.desc      = "Simple custom timer functionality";
+addon.desc      = "Track dancer step levels";
 addon.link      = "https://github.com/MahlKni/stepTracker/";
 
 require "common";
