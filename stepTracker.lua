@@ -75,6 +75,10 @@ ashita.events.register('text_in', 'text_in_cb', function(e)
 		end
 		
 		mobs[index] = {target.Name, target.HPPercent, stepName, true, os.time(), boxCount , quickCount, featherCount, stutterCount};
+		boxCount = 0
+		quickCount = 0
+		featherCount = 0
+		stutterCount = 0
         display.mobcolor = display.yellow;
         if AshitaCore:GetMemoryManager():GetEntity():GetType(index) ~= 2 then return end;              
         if not count or count == 0 then return; end
