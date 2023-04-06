@@ -27,9 +27,7 @@ local defaults = T{
 };
 local display = T{};
 local osd = T{};
-local mobs = T{};-- [id] = {name,StepName,+StepCount}
-local Towns = T{'Tavnazian Safehold','Al Zahbi','Aht Urhgan Whitegate','Nashmau','Southern San d\'Oria [S]','Bastok Markets [S]','Windurst Waters [S]','San d\'Oria-Jeuno Airship','Bastok-Jeuno Airship','Windurst-Jeuno Airship','Kazham-Jeuno Airship','Southern San d\'Oria','Northern San d\'Oria','Port San d\'Oria','Chateau d\'Oraguille','Bastok Mines','Bastok Markets','Port Bastok','Metalworks','Windurst Waters','Windurst Walls','Port Windurst','Windurst Woods','Heavens Tower','Ru\'Lude Gardens','Upper Jeuno','Lower Jeuno','Port Jeuno','Rabao','Selbina','Mhaura','Kazham','Norg','Mog Garden','Celennia Memorial Library','Western Adoulin','Eastern Adoulin'};
-local area = '';
+local mobs = T{};
 local boxCount = 0;
 local quickCount = 0;
 local featherCount = 0;
@@ -65,11 +63,7 @@ ashita.events.register('text_in', 'text_in_cb', function(e)
         if AshitaCore:GetMemoryManager():GetEntity():GetType(index) ~= 2 then return end;
         local count = tonumber(string.match(e.message,'%d+'));
         start,finish = string.find(e.message,'%d+')
-        local stepName = tostring(string.match(e.message,'%a+',finish))
-		local boxCount
-		local quickCount
-		local featherCount
-		local stutterCount
+        local stepName = tostring(string.match(e.message,'%a+',finish));
 		if stepName == "Box" then
 			boxCount = count
 		elseif stepName == "Feather" then
@@ -92,13 +86,7 @@ ashita.events.register('d3d_present', 'present_cb', function ()
     local player = AshitaCore:GetMemoryManager():GetPlayer();
     local t = 0;
     display.text = '';
-    area = AshitaCore:GetResourceManager():GetString("zones.names", AshitaCore:GetMemoryManager():GetParty():GetMemberZone(0));
-
-	if (player:GetIsZoning() ~= 0) or (area == nil) or (Towns:contains(area)) then
-        mobs = T{};
-		return;
-	end
-
+    
     for k,v in pairs(mobs) do
         t = t + 1;
         
@@ -108,9 +96,9 @@ ashita.events.register('d3d_present', 'present_cb', function ()
         
         local mob = GetEntity(k);
         if v[2] == 0 then
-            display.text = display.text .. display.red .. '\n' .. v[1] .. '(' .. tostring(k) .. ') ' .. '  Box: ' .. tostring(v[6]).. '  Quick: ' .. tostring(v[7]) .. '  F: ' .. tostring(v[8]) .. '  Stutter: ' .. tostring(v[9]);
+            display.text = display.text .. display.red .. '\n' .. v[1] .. '(' .. tostring(k) .. ') ' .. '  Box: ' .. tostring(v[6]).. '  Quick: ' .. tostring(v[7]) .. '  Feather: ' .. tostring(v[8]) .. '  Stutter: ' .. tostring(v[9]);
         else
-            display.text = display.text .. display.mobcolor .. '\n' .. v[1] .. '(' .. tostring(k) .. ') ' .. '  Box: ' .. tostring(v[6]).. '  Quick: ' .. tostring(v[7]) .. '  F: ' .. tostring(v[8]) .. '  Stutter: ' .. tostring(v[9]);
+            display.text = display.text .. display.mobcolor .. '\n' .. v[1] .. '(' .. tostring(k) .. ') ' .. '  Box: ' .. tostring(v[6]).. '  Quick: ' .. tostring(v[7]) .. '  Feather: ' .. tostring(v[8]) .. '  Stutter: ' .. tostring(v[9]);
         end
     end
 
@@ -141,10 +129,10 @@ function update()
         end
 
         if os.time() - v[5] > osd.displayTime and v[2] == 0 then mobs[k] = nil
-		boxCount = 0;
-		quickCount = 0;
-		featherCount = 0;
-		stutterCount = 0;
+		boxCount = 0
+		quickCount = 0
+		featherCount = 0
+		stutterCount = 0
 		end;
     end
 end
