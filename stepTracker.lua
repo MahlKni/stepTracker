@@ -64,6 +64,7 @@ ashita.events.register('text_in', 'text_in_cb', function(e)
         local count = tonumber(string.match(e.message,'%d+'));
         start,finish = string.find(e.message,'%d+')
         local stepName = tostring(string.match(e.message,'%a+',finish));
+		if (count ~= nil) then
 		if stepName == "Box" then
 			boxCount = count
 		elseif stepName == "Feather" then
@@ -102,6 +103,7 @@ ashita.events.register('text_in', 'text_in_cb', function(e)
 		mobs[index] = {target.Name, target.HPPercent, stepName, true, os.time(), boxCount , quickCount, featherCount, stutterCount};
 		end
         display.mobcolor = display.yellow;
+		end
         if AshitaCore:GetMemoryManager():GetEntity():GetType(index) ~= 2 then return end;              
         if not count or count == 0 then return; end
 		if target == nil then return end;
